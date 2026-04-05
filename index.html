@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task&Click App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background: #0f0f0f; /* Глибокий чорний */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            color: #00ff88; /* Неоновий зелений для "Click" */
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .stats-container {
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+        .balance-label { color: #888; font-size: 14px; margin-bottom: 5px; }
+        .balance-value { font-size: 36px; font-weight: 800; color: #00ff88; }
+        
+        .main-button {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.1s;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        .main-button:active { transform: scale(0.96); }
+        
+        .footer-text { margin-top: 20px; color: #555; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="header">Task&Click</div>
+    
+    <div class="stats-container">
+        <div class="balance-label">ДОСТУПНИЙ БАЛАНС</div>
+        <div class="balance-value" id="user-balance">0.0000 USDT</div>
+    </div>
+
+    <button class="main-button" onclick="tg.showAlert('Розділ завдань оновлюється...')">🚀 ВИКОНАТИ ЗАВДАННЯ</button>
+    
+    <p class="footer-text">Успіхів, <span id="user-name">користувач</span>!</p>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.ready();
+
+        // Відображаємо ім'я з Телеграм
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            document.getElementById("user-name").innerText = tg.initDataUnsafe.user.first_name;
+        }
+    </script>
+</body>
+</html>
